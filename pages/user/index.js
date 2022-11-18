@@ -1,30 +1,17 @@
 import {useRouter} from 'next/router';
 import {useSession} from "next-auth/react";
+import Navbar from "../components/navbar";
 
 
 export default function Index({user=[]}){
     const {data:session,status}=useSession();
-    const nombre=session?.user.name
-    console.log(nombre)
+
+
 
     const router=useRouter();
     return(
         <div className="bg-gray-10 h-screen">
-            <div name ='navbar'className="bg-gray-900 py-3 flex justify-between" >
-                <div className="grid content-center mx-10">
-                    <img onClick={()=>router.push('/')}
-                        src='https://logos-world.net/wp-content/uploads/2020/12/Discord-Logo.png' className="w-10"></img>
-                </div>
-                <div name='foto usuario' className="w-80 mx-10 flex justify-evenly">
-                    <button onClick={()=>router.push('/user')}
-                            className='bg-blue-500 my-4 px-1 rounded-xl hover:bg-blue-700 hover:text-white'>Editar Perfil</button>
-                    <h1 className="grid content-center text-white">{(session?.user?.name)}</h1>
-                    <img src={session?.user?.image} className="w-16"></img>
-
-
-
-                </div>
-            </div>
+            <Navbar/>
             <div className={'grid my-10 mx-64 p-10 bg-gray-200 rounded-3xl shadow-inherity  '}>
                 {user.map(usr=>(
                     <div className={'grid'} key={usr._id}>

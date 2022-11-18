@@ -2,8 +2,9 @@ import {useSession} from 'next-auth/react'
 import { Router, useRouter } from 'next/router'
 import LoginPage from './login'
 import { signOut } from 'next-auth/react';
+import Navbar from "./components/navbar";
 
-export default function Home() {
+export default function Home({product=[]}) {
 
   const router=useRouter();
 const {data:session,status}=useSession();
@@ -15,20 +16,22 @@ if(status==='unauthenticated'){
 }
   return (
       <div className="bg-gray-700 h-screen">
-          <div name ='navbar'className="bg-gray-900 py-3 flex justify-between" >
-              <div className="grid content-center mx-10">
-                  <img
-                      src='https://logos-world.net/wp-content/uploads/2020/12/Discord-Logo.png' className="w-10" onClick={()=>router.push('/')}></img>
-              </div>
-              <div name='foto usuario' className="w-80 mx-10 flex justify-evenly">
-                  <button onClick={()=>router.push('/user')}
-                          className='bg-blue-500 my-4 px-1 rounded-xl hover:bg-blue-700 hover:text-white'>Editar Perfil</button>
-                  <h1 className="grid content-center text-white">{(session?.user?.name)}</h1>
-                  <img src={session?.user?.image} className="w-16"></img>
+         <Navbar/>
+          <div className={'grid my-10 mx-10 justify-center p-10 bg-gray-200 rounded-3xl shadow-inherity flex md:grid md:grid-cols-4 md:gap-4 '}>
+              {product.map(prd=>(
+                  <div className={''} key={prd._id}>
+                      <div>
+                          <img src={prd.imagen} className={'h-40'}></img>
+                          <h1 className={'text-center text-xl h-16'}>{prd.nombre}</h1>
+                          <h1 className={'ml-4'}>{prd.precio} $</h1>
+                          <button className={'w-full text-xl text-white px-5 py-2 rounded-2xl bg-blue-800 hover:bg-purple-900'} onClick={()=>{router.push(`/productos/${prd._id}`)}}>Comprar</button>
+
+                      </div>
 
 
+                  </div>
+              ))}
 
-              </div>
           </div>
 
 
@@ -36,5 +39,16 @@ if(status==='unauthenticated'){
   )
 }
 
+export async function getServerSideProps(){
+
+
+    const res=await fetch(`http://localhost:3000/api/products`);
+    const product=await res.json();
+    return{
+        props:{
+            product
+        }
+    }
+}
    
   
