@@ -38,7 +38,8 @@ export default function Index() {
           </div>
 
           <button className={'mx-10 text-3xl h-16 bg-blue-500 w-32 rounded-2xl hover:bg-green-500'}
-          onClick={async()=>{alert("comprado correctamente");await router.push('/')}}>Comprar</button>
+          onClick={async()=>{alert("comprado correctamente");await router.push('/')}}
+          >Comprar</button>
         </div>
       </div>
     </div>

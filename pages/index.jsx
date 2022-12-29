@@ -25,6 +25,7 @@ if(status==='unauthenticated'){
                           <h1 className={'text-center text-xl h-16'}>{prd.nombre}</h1>
                           <h1 className={'ml-4'}>{prd.precio} $</h1>
                           <button className={'w-full text-xl text-white px-5 py-2 rounded-2xl bg-blue-800 hover:bg-purple-900'} onClick={()=>{router.push(`/productos/${prd._id}`)}}>Comprar</button>
+                          <button className={'w-full text-xl text-white px-5 py-2 rounded-2xl bg-blue-800 hover:bg-purple-900'} onClick={()=>{alert('meriunm funcion si no hace jala curso')}}>Agregar al carrito</button>
 
                       </div>
 
