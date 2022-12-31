@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
+
   const { data: session, status } = useSession();
   const router = useRouter();
   return (
@@ -14,12 +15,7 @@ export default function Navbar() {
             className="w-10"
           ></img>
         </div>
-
         <div name="foto usuario" className="w-80 mx-10 flex justify-evenly">
-          <div className={'flex'} onClick={()=>{router.push('/')}}>
-            <img className={'w-14 my-4'} src="https://www.ubolosoft.com/Carrito/images/carrito.png" alt="Carro De Compra - Carrito De Compras Blanco Png@seekpng.com"/>
-            <p className={'text-white'}>0</p>
-          </div>
           <button
             onClick={() => router.push("/user")}
             className="bg-blue-500 my-4 mx-2 px-1 rounded-xl hover:bg-blue-700 hover:text-white"
@@ -50,3 +46,4 @@ export async function getServerSideProps() {
     },
   };
 }
+//

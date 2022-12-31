@@ -3,10 +3,11 @@ const Schema=mongoose.Schema;
 
 const productSchema=new mongoose.Schema(
     {
+        id:{type:Number},
         nombre:{type:String},
         precio:{type:Number},
         imagen:{type:String},
-        cantidad:{type:Number,default:0}
+        cantidad:{type:Number,default:1}
 
 
     },{
