@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import Navbar from "../../components/navbar";
 import {router} from "next/client";
+import App1 from "../../components/pago";
 export default function Index() {
   const { data: session, status } = useSession();
   const [product, setProduct] = useState({
@@ -40,8 +41,10 @@ export default function Index() {
           <button className={'mx-10 text-3xl h-16 bg-blue-500 w-32 rounded-2xl hover:bg-green-500'}
           onClick={async()=>{alert("comprado correctamente");await router.push('/')}}
           >Comprar</button>
+          
         </div>
       </div>
+      <div>{App1()}</div>
     </div>
   );
 }

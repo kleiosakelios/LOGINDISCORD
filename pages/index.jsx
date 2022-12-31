@@ -2,7 +2,9 @@ import {useSession} from 'next-auth/react'
 import { Router, useRouter } from 'next/router'
 import LoginPage from './login'
 import { signOut } from 'next-auth/react';
+import React from 'react';
 import Navbar from "./components/navbar";
+
 
 export default function Home({product=[]}) {
 
@@ -16,6 +18,7 @@ if(status==='unauthenticated'){
 }
   return (
       <div className="bg-gray-700 h-screen">
+        
          <Navbar/>
           <div className={'grid my-10 mx-10 justify-center p-10 bg-gray-200 rounded-3xl shadow-inherity flex md:grid md:grid-cols-4 md:gap-4 '}>
               {product.map(prd=>(
@@ -34,11 +37,14 @@ if(status==='unauthenticated'){
               ))}
 
           </div>
-
+<div>
+    
+</div>
 
       </div>
   )
 }
+
 
 export async function getServerSideProps(){
 
@@ -52,4 +58,4 @@ export async function getServerSideProps(){
     }
 }
    
-  
+
